@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.use((req,res,next)=>{
     console.log("Middleware is Working fine from router")
+    next()
 })
 
 router.get('/rr',(req,res)=>{

@@ -37,6 +37,14 @@ app.get('/mm',(req,res,next)=> {
 })
 
 
+app.get('/am',(req,res)=>{
+  res.status(200).json({
+    email: req.body.email
+
+  })
+})
+
+
 app.listen(4000, () => {
   console.log("server is running on 4000");
 });
