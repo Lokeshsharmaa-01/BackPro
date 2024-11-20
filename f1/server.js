@@ -1,12 +1,23 @@
 import express, { json } from 'express'
+import DBConnection from './DB/ind.js';
+import multer from 'multer';
+
+DBConnection()
 
 const app = express();
-
 app.use(express.json())
 
-app.get('/home',(req,res)=>{
-    res.send('Hello');
+
+const upload = multer({ dest: './uploads' })
+
+app.post('/a',upload.single('myfile'),(req,res)=>{
+    console.log(req.file);
+    
+    res.send("file upload successfully")
 })
+
+
+
 
 app.post('/h1',(req,res)=>{
     res.status(200).json({
