@@ -9,7 +9,7 @@ const uploads = multer.uploads({dest: './uploads'})
 app.post('/aa',uploads.singel('myfile'),(req,res)=>{
     app.send("file uploaded successfully")
 })
-
+app.post('/ap',()=>)
 app.get('/',(req,res)=>{
     res.send('hi')
 })
