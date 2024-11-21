@@ -8,7 +8,17 @@ const app = express();
 app.use(express.json())
 
 
-const upload = multer({ dest: './uploads' })
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
+  })
+  
+  const upload = multer({ storage: storage })
 
 app.post('/a',upload.single('myfile'),(req,res)=>{
     console.log(req.file);
