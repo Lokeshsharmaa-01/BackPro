@@ -1,15 +1,21 @@
-import express from 'express'
+import express, { Router } from 'express'
+import multer from 'multer';
+import cust from './routes/customer.js';
+import admin from './routes/admin.js';
+
 
 const app = express();
+app.use(cust)
+app.use(admin)
 
 
-const uploads = multer.uploads({dest: './uploads'})
+const uploads = multer({dest: './uploads'})
 
 
-app.post('/aa',uploads.singel('myfile'),(req,res)=>{
-    app.send("file uploaded successfully")
+app.post('/aa',uploads.single('file'),(req,res)=>{
+    res.send("file uploaded successfully")
 })
-app.post('/ap',()=>)
+
 app.get('/',(req,res)=>{
     res.send('hi')
 })
